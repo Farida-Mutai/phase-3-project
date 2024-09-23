@@ -1,6 +1,6 @@
 # PHASE-3-PROJECT
 
-###EXPENSE TRACKER
+###EXPENSE TRACKER.
 
 An Expense Tracker application designed to help users manage their expenses and incomes efficiently. This application provides functionalities for adding, viewing, updating, and deleting expenses and categories. Users can also track their incomes associated with different activities.
 
