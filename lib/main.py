@@ -132,7 +132,8 @@ def delete_user():
     except Exception as e:
         print(f"Error deleting user: {e}")
 
-# ---- INCOME FUNCTIONS ----
+
+
 
 def add_income():
     description = input("Enter the income description: ")
@@ -163,7 +164,8 @@ def delete_income():
     except Exception as e:
         print(f"Error deleting income: {e}")
 
-# ---- MAIN LOOP ----
+
+
 
 def main():
     while True:

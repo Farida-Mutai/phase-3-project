@@ -5,7 +5,8 @@ from Models.user import User
 from Models.income import Income
 from orm.orm import ORM
 
-# Initialize the database connection
+
+
 ORM('expenses.db')
 
 @click.group()
@@ -13,7 +14,8 @@ def cli():
     """CLI for managing expenses, categories, users, and incomes."""
     pass
 
-# ---- EXPENSES ----
+
+
 
 @cli.command()
 @click.argument('description')
@@ -70,7 +72,8 @@ def clear_expenses():
         click.echo(f'Error clearing expenses: {e}')
 
 
-# ---- CATEGORIES ----
+
+
 
 @cli.command()
 @click.argument('name')
@@ -103,7 +106,8 @@ def delete_category(category_id):
         click.echo(f'Error deleting category: {e}')
 
 
-# ---- USERS ----
+
+
 
 @cli.command()
 @click.argument('username')
@@ -137,7 +141,7 @@ def delete_user(user_id):
         click.echo(f'Error deleting user: {e}')
 
 
-# ---- INCOME ----
+
 
 @cli.command()
 @click.argument('description')

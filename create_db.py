@@ -5,7 +5,8 @@ def create_database():
     conn = sqlite3.connect('expenses.db')
     cursor = conn.cursor()
 
-    # Create expenses table
+    
+    
     create_expenses_table = """
     CREATE TABLE IF NOT EXISTS expenses (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,7 +18,8 @@ def create_database():
     )
     """
 
-    # Create categories table
+    
+    
     create_categories_table = """
     CREATE TABLE IF NOT EXISTS categories (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,7 +27,8 @@ def create_database():
     )
     """
 
-    # Create users table
+    
+    
     create_users_table = """
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +37,8 @@ def create_database():
     )
     """
 
-    # Create incomes table
+    
+    
     create_incomes_table = """
     CREATE TABLE IF NOT EXISTS incomes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -46,19 +50,21 @@ def create_database():
     )
     """
 
-    # Execute table creation queries
+    
+    
     cursor.execute(create_expenses_table)
     cursor.execute(create_categories_table)
     cursor.execute(create_users_table)
     cursor.execute(create_incomes_table)
 
-    # Insert seed data for categories (single column)
+    
+    
     cursor.executemany(
         "INSERT OR IGNORE INTO categories (name) VALUES (?)", 
         [('Groceries',), ('Rent',), ('Utilities',), ('Entertainment',), ('Transportation',), ('Healthcare',)]
     )
 
-    # Insert seed data for users with the updated email format
+    
     cursor.executemany(
         "INSERT OR IGNORE INTO users (username, email) VALUES (?, ?)", 
         [
@@ -74,7 +80,8 @@ def create_database():
         ]
     )
 
-    # Insert seed data for incomes
+    
+    
     cursor.executemany(
         "INSERT INTO incomes (description, amount, user_id) VALUES (?, ?, ?)", 
         [
@@ -90,7 +97,7 @@ def create_database():
         ]
     )
 
-    # Insert seed data for expenses
+    
     cursor.executemany(
         "INSERT INTO expenses (description, amount, category_id) VALUES (?, ?, ?)", 
         [
@@ -107,7 +114,7 @@ def create_database():
         ]
     )
 
-    # Commit and close connection
+    
     conn.commit()
     conn.close()
 
