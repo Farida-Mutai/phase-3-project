@@ -52,17 +52,60 @@ def create_database():
     cursor.execute(create_users_table)
     cursor.execute(create_incomes_table)
 
-    # Insert seed data for categories
-    cursor.execute("INSERT OR IGNORE INTO categories (name) VALUES ('Groceries'), ('Rent'), ('Utilities')")
+    # Insert seed data for categories (single column)
+    cursor.executemany(
+        "INSERT OR IGNORE INTO categories (name) VALUES (?)", 
+        [('Groceries',), ('Rent',), ('Utilities',), ('Entertainment',), ('Transportation',), ('Healthcare',)]
+    )
 
-    # Insert seed data for users
-    cursor.execute("INSERT OR IGNORE INTO users (username, email) VALUES ('John Doe', 'john@example.com'), ('Jane Smith', 'jane@example.com')")
+    # Insert seed data for users with the updated email format
+    cursor.executemany(
+        "INSERT OR IGNORE INTO users (username, email) VALUES (?, ?)", 
+        [
+            ('Ann', 'ann@gmail.com'), 
+            ('Kennedy', 'kennedy@gmail.com'), 
+            ('Rick', 'rick@gmail.com'),
+            ('Farida', 'farida@gmail.com'),
+            ('Eugine', 'eugine@gmail.com'),
+            ('Frankline', 'frankline@gmail.com'),
+            ('Joel', 'joel@gmail.com'),
+            ('Alex', 'alex@gmail.com'),
+            ('Quincy', 'quincy@gmail.com')
+        ]
+    )
 
     # Insert seed data for incomes
-    cursor.execute("INSERT INTO incomes (description, amount, user_id) VALUES ('Salary', 3000, 1), ('Freelance Work', 1500, 2)")
+    cursor.executemany(
+        "INSERT INTO incomes (description, amount, user_id) VALUES (?, ?, ?)", 
+        [
+            ('Salary', 4000, 1), 
+            ('Freelance Work', 2500, 2),
+            ('Consulting', 1500, 3),
+            ('Teaching', 3000, 4),
+            ('Investment Return', 1000, 5),
+            ('Business Profit', 3500, 6),
+            ('Freelance Design', 2000, 7),
+            ('Rental Income', 1800, 8),
+            ('E-commerce Sales', 2200, 9)
+        ]
+    )
 
     # Insert seed data for expenses
-    cursor.execute("INSERT INTO expenses (description, amount, category_id) VALUES ('Grocery Shopping', 100, 1), ('Rent Payment', 800, 2)")
+    cursor.executemany(
+        "INSERT INTO expenses (description, amount, category_id) VALUES (?, ?, ?)", 
+        [
+            ('Grocery Shopping', 150, 1), 
+            ('Rent Payment', 850, 2),
+            ('Movie Night', 60, 4),
+            ('Bus Fare', 25, 5),
+            ('Doctor Appointment', 180, 6),
+            ('Electricity Bill', 130, 3),
+            ('Dinner at Restaurant', 90, 4),
+            ('Gas for Car', 70, 5),
+            ('Gym Membership', 50, 6),
+            ('Water Bill', 40, 3)
+        ]
+    )
 
     # Commit and close connection
     conn.commit()
